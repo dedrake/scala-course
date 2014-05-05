@@ -24,15 +24,15 @@ object Main {
    */
   def balance(chars: List[Char]): Boolean = {
 
-    def hasMatch (chars: List[Char], numTags: Int): Boolean = {
-      if (chars.isEmpty) true
+    def hasMatch (chars: List[Char], openTag: Int): Boolean = {
+      if (chars.isEmpty && openTag == 0) true
       else {
         val num =
-          if(chars.head == '(') numTags + 1
-          else if(chars.head == ')') numTags - 1
-          else numTags
-        if(num >= 0) hasMatch(chars.tail, num)
-        else false
+          if(chars.head == '(') openTag + 1
+          else if(chars.head == ')') openTag - 1
+          else openTag
+        if(num < 0) false
+        else hasMatch(chars.tail, num)
       }
     }
 
