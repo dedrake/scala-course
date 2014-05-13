@@ -26,6 +26,7 @@ object Main {
 
     def hasMatch (chars: List[Char], openTag: Int): Boolean = {
       if (chars.isEmpty && openTag == 0) true
+      else if (chars.isEmpty && openTag > 0) false
       else {
         val num =
           if(chars.head == '(') openTag + 1

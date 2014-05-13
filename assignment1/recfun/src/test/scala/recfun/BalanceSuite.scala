@@ -9,7 +9,7 @@ import org.scalatest.junit.JUnitRunner
 class BalanceSuite extends FunSuite {
   import Main.balance
 
-  test("balance: '(if (zero? x) max (/ 1 x))' is balanced") {
+  test("balance: '((if (zero? x) max (/ 1 x))' is balanced") {
     assert(balance("(if (zero? x) max (/ 1 x))".toList))
   }
 
@@ -27,5 +27,9 @@ class BalanceSuite extends FunSuite {
 
   test("balance: empty list is balanced") {
     assert(balance("".toList))
+  }
+
+  test("balance: open tags not closed") {
+    assert(!balance("((())".toList))
   }
 }
